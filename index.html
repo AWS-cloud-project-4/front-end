@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Mozzy Guard</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        #map {
+            width: 400px;
+            height: 500px;
+            display: none;
+            /* 초기에는 숨기기 */
+        }
+
+        #info {
+            margin-top: 20px;
+            font-size: 16px;
+            display: none;
+            /* 초기에는 숨기기 */
+        }
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            align-items: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <div id="date"></div> <br>
+        <div id="location">현재 {{ city }} {{ district }}에서 모기 지수</div>
+        <div id="mosq">모기 지수</div>
+        <br><br>
+        <form action="#">
+            <label for="region-select">도/특별시/광역시 선택</label>
+            <select id="region-select" name="region" onchange="updateDistricts()">
+                <option value="">선택하세요</option>
+    <option value="강원">강원</option>
+    <option value="경기">경기</option>
+    <option value="경상">경상</option>
+    <option value="광주">광주</option>
+    <option value="대구">대구</option>
+    <option value="대전">대전</option>
+    <option value="부산">부산</option>
+    <option value="서울">서울</option>
+    <option value="세종">세종</option>
+    <option value="울산">울산</option>
+    <option value="인천">인천</option>
+    <option value="전라">전라</option>
+    <option value="제주">제주</option>
+    <option value="충정">충정</option>
+            </select>
+
+            <br><br>
+
+            <label for="district-select">서울시 구 선택</label>
+            <select id="district-select" name="district" disabled>
+                <option value="">서울을 먼저 선택하세요</option>
+                <!-- 서울시 구는 자바스크립트로 동적으로 추가됨 -->
+            </select>
+        </form>
+    </div>
+
+    <div class="right">
+        <div id="map"></div>
+        <div id="info"></div>
+    </div>
+
+    <!--현재시간 표시-->
+    <script src="static/js/time.js"></script>
+
+    <!--서울시 구 목록 가져오기-->
+    <script src="static/js/districts.js"></script>
+
+    <!--지도 보이기 및 업데이트-->
+    <!-- 카카오 지도 API 로드 -->
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=d1a89afacced0ca0347cacea789b27fe"></script>
+    <script src="static/js/map.js"></script>
+</body>
+
+</html>
